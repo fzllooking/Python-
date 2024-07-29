@@ -120,3 +120,55 @@ author_list = jsonpath.jsonpath(obj,'$..A[?(@.unique)]')
 ```PYTHON
 author_list = jsonpath.jsonpath(obj,'$..A[?(@.id>300)]')
 ```
+
+* 案例：用jsonpath解析淘票票
+* 首先从淘票票网站拿取相应数据
+
+![image](https://github.com/user-attachments/assets/9d85b362-440a-41ea-912e-7a69b7cc3be9)
+
+```PYTHON
+import urllib.request
+url = 'https://dianying.taobao.com/cityAction.json?activityId&_ksTS=1722269482162_108&jsoncallback=jsonp109&action=cityAction&n_s=new&event_submit_doGetAllRegion=true'
+headers = {
+    # ':authority':'dianying.taobao.com',
+    # ':method':'GET',
+    # ':path':'/cityAction.json?city=110100&_ksTS=1722268052236_19&jsoncallback=jsonp20&action=cityAction&n_s=new&event_submit_doLocate=true',
+    # ':scheme':'https',
+    'Accept':'text/javascript, application/javascript, application/ecmascript, application/x-ecmascript, /; q=0.01',
+    # 'Accept-Encoding':'gzip, deflate, br, zstd',
+    'Accept-Language':'zh-CN,zh;q=0.9',
+    'Bx-V':'2.5.14',
+    'Cookie':'......',
+    'Priority':'u=0, i',
+    'Referer': 'https://dianying.taobao.com/',
+    'Sec-Ch-Ua':'"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
+    'Sec-Ch-Ua-Mobile':'?0',
+    'Sec-Ch-Ua-Platform':'"Windows"',
+    'Sec-Fetch-Dest':'empty',
+    'Sec-Fetch-Mode':'cors',
+    'Sec-Fetch-Site':'same-origin',
+    'User-Agent':'......',
+    'X-Requested-With':'XMLHttpRequest'
+}
+
+request = urllib.request.Request(url=url,headers=headers)
+response = urllib.request.urlopen(request)
+content = response.read().decode('utf-8')
+print(content)
+```
+* 结果为：jsonp109({"returnCode":"0","returnValue":{"A":[{"id":3643,"parentId":0,"regionName":"阿坝","cityCode":513200,"pinYin":"ABA"},{"id":3090,"parentId":0,"regionName":"阿克苏","cityCode":652900,"pinYin":"AKESU"},......
+* 
+* 注意到，这是json格式，因此可以有**split切割**
+```PYTHON
+# 将json数据转换为python字典
+# split 切割
+# content.split('(') -- 将开头的左括号去除切割，形成了['\r\n\r\njsonp109', '{"returnCode":"0","returnValue":{"A":[{"id":3643,"parentId":0,"regionName":"阿坝","......
+# content.split('(')[1] -- 取第二个元素，即python字典中的数据
+# content.split('(')[1].split(')') -- 再将最后的)切割去除
+# content.split('(')[1].split(')')[0] -- 取第一个元素，得到python字典
+
+content = content.split('(')[1].split(')')[0]
+print(content)
+
+# 结果为：{"returnCode":"0","returnValue":{"A":[{"id":3643,"parentId":0,"regionName":"阿坝",......
+```
