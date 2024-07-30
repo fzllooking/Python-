@@ -3,7 +3,7 @@
 1.Beautifulsoup简称:
   bs4
 2.什么是Beatifulsoup?
-  Beautifulsoup，和lxm1一样，是一个html的解析器,主要功能也是解析和提取数据
+  Beautifulsoup，和lxml一样，是一个html的解析器,主要功能也是解析和提取数据
 3.优缺点?
   缺点:效率没有lxml的效率高
   优点:接口设计人性化，使用方便
