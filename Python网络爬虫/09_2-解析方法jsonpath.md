@@ -159,15 +159,30 @@ print(content)
 * 结果为：jsonp109({"returnCode":"0","returnValue":{"A":[{"id":3643,"parentId":0,"regionName":"阿坝","cityCode":513200,"pinYin":"ABA"},{"id":3090,"parentId":0,"regionName":"阿克苏","cityCode":652900,"pinYin":"AKESU"},......
 * 注意到，这是json格式，因此可以有**split切割**
 ```PYTHON
-# 将json数据转换为python字典
+#  转换为标准json数据
 # split 切割
 # content.split('(') -- 将开头的左括号去除切割，形成了['\r\n\r\njsonp109', '{"returnCode":"0","returnValue":{"A":[{"id":3643,"parentId":0,"regionName":"阿坝","......
-# content.split('(')[1] -- 取第二个元素，即python字典中的数据
+# content.split('(')[1] -- 取第二个元素， 转换为标准json数据
 # content.split('(')[1].split(')') -- 再将最后的)切割去除
-# content.split('(')[1].split(')')[0] -- 取第一个元素，得到python字典
+# content.split('(')[1].split(')')[0] -- 取第一个元素， 转换为标准json数据
 
 content = content.split('(')[1].split(')')[0]
 print(content)
 
 # 结果为：{"returnCode":"0","returnValue":{"A":[{"id":3643,"parentId":0,"regionName":"阿坝",......
+```
+
+* 下载到本地后进行jsonpath操作
+```PYTHON
+with open('城市.json','w',encoding='utf-8')as fp:
+    fp.write(content)
+
+# 已经下载到本地后,进行jsonpath操作
+import json
+import jsonpath
+# json.load()里面必须是文件！不能是('城市.json')，因为这个是字符串!
+obj = json.load(open('城市.json','r',encoding='utf-8'))
+city_list = jsonpath.jsonpath(obj,'$..regionName')
+print(city_list)
+# ['阿坝', '阿克苏', '阿拉善', '阿勒泰', '安康', '安庆', '鞍山', '......]
 ```
