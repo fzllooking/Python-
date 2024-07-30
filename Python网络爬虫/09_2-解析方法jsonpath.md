@@ -157,7 +157,6 @@ content = response.read().decode('utf-8')
 print(content)
 ```
 * 结果为：jsonp109({"returnCode":"0","returnValue":{"A":[{"id":3643,"parentId":0,"regionName":"阿坝","cityCode":513200,"pinYin":"ABA"},{"id":3090,"parentId":0,"regionName":"阿克苏","cityCode":652900,"pinYin":"AKESU"},......
-* 
 * 注意到，这是json格式，因此可以有**split切割**
 ```PYTHON
 # 将json数据转换为python字典
