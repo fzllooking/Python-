@@ -157,3 +157,15 @@ print(soup.select('a,li'))
         </span>
     </div>>
 ```
+
+* 获取节点内容,适用于标签中嵌套标签的结构
+  * obj.string()
+  * obj.get_text()
+```PYTHON
+obj = soup.select('#d1')[0]
+# 如果标签对象中只有内容，那么string和get_text都可以使用
+# 标签中含了标签，那么obj.string()就不可以显示其中的数据
+# 如果标签对象中除了内容还有标签，只能用get_text()
+print(obj.string)
+print(obj.get_text())
+```
