@@ -90,10 +90,33 @@ print(soup.find('a',class_="a1"))
 ```
 
 #### (2)find_all()--返回一个列表
+> find_all(name, attrs, recursive, string, limit, **kwargs)
+
+> name：可以是标签的名称，如 'div'、'p' 等。
+例如：soup.find_all('div') 会找到所有的 <div> 标签。
+
+> attrs：是一个字典，用于指定标签的属性及对应的值。
+
+> 比如：soup.find_all(attrs={'class': 'example'}) 会找到所有 class 属性为 example 的标签。
+
+> recursive：是一个布尔值，决定是否递归搜索子标签。默认值为 True。
+
+> string：用于基于标签中的字符串内容进行搜索。
+
+> limit：限制返回的结果数量。
+
+> 
 ```PYTHON
 print(soup.find_all('a'))
 
 # 返回的是列表: [<a href="">这是a标签</a>, <a href="" title="a2">这是a_22标签</a>]
+```
+
+```PYTHON
+print(soup.find_all('a',class_="a1"))
+
+# [<a class="a1" href="" id="12">这是a标签</a>]
+
 ```
 * 同时获取多个标签--find_all()中要用列表类型的数据
 ```python
