@@ -169,3 +169,23 @@ obj = soup.select('#d1')[0]
 print(obj.string)
 print(obj.get_text())
 ```
+* 现增添一道信息
+```html
+<p id = "p1" class="p1">呵呵呵你好啊</p>>
+```
+* 节点的属性
+```PYTHON
+obj =soup.select('#p1')[0]
+# name是标签的名字
+print(obj.name)
+
+# 将属性值作为字典返回:attrs
+print(obj.attrs)
+
+# 获取节点的属性
+obj = soup.select('#p1')[0]
+# 推荐使用第一种
+print(obj.attrs.get('class')) 
+print(obj.get('class'))
+print(obj['class'])
+```
