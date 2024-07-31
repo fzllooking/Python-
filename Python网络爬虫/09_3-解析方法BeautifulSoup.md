@@ -70,7 +70,7 @@ print(soup.a.attrs)
 # {'href': ''}
 ```
 ### bs4函数
-* (1)find()--返回一个对象
+#### (1)find()--返回一个对象
 ```PYTHON
 # find()函数--返回的是第一个数据
 print(soup.find('a'))
@@ -89,7 +89,7 @@ print(soup.find('a',title='a2'))
 print(soup.find('a',class_="a1"))
 ```
 
-* (2)find_all()--返回一个列表
+#### (2)find_all()--返回一个列表
 ```PYTHON
 print(soup.find_all('a'))
 
@@ -106,7 +106,7 @@ print(soup.find_all('li',limit=2))
 
 # [<li class="c1" id="l1">北京</li>, <li>上海</li>]
 ```
-* (3)select() -- 返回列表，并且返回多个数据
+#### (3)select() -- 返回列表，并且返回多个数据
 ```PYTHON
 print(soup.select('a'))
 
