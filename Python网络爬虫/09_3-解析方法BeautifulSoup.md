@@ -83,6 +83,12 @@ print(soup.find('a',title='a2'))
 
 # <a href="" title="a2">这是a_22标签</a>
 ```
+* 根据class属性查找
+* 因为class是python中的关键字,因此bs4规定使用class_代替
+```python
+print(soup.find('a',class_="a1"))
+```
+
 * (2)find_all()--返回一个列表
 ```PYTHON
 print(soup.find_all('a'))
