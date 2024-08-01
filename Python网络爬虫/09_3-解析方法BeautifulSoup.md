@@ -218,3 +218,37 @@ print(obj.attrs.get('class'))
 print(obj.get('class'))
 print(obj['class'])
 ```
+
+## BeautifulSoup实战
+* 爬取小说信息
+![image](https://github.com/user-attachments/assets/5efdd4b5-1014-45fc-98cc-286ae7f8bca1)
+
+```PYTHON
+from bs4 import BeautifulSoup
+import urllib.request
+
+url = 'https://7haojidi.com/book/62591/23282368.html'
+headers = {
+    'user-agent':'......'
+
+request = urllib.request.Request(url=url, headers=headers)
+response = urllib.request.urlopen(request)
+content = response.read().decode('utf-8')
+
+soup = BeautifulSoup(content, 'lxml')
+
+# //p/text() 找到了小说文字对应的标签
+novel_list = soup.select('p')
+
+for novel in novel_list:
+    print(novel.get_text()) 
+
+# 结果为：“你们主人是谁？”白宇哲虽然心中有所猜测，不过还是开口问了一句。
+ “这就不需要你多问了，直接跟我们走就是！”那男子言简意赅，就跟命令一般，容不得白宇哲有半点反驳，甚至一边说着话，一边就已经将白宇哲围在了中间。
+ 恐怕只要白宇哲说出半个不字，他们就会立刻动手，强行将白宇哲带走。
+ “呵呵，看你们的样子就知道你们的主人也就这么回事，毕竟养的狗就已经暴露了他本性！”见对方如此态度，白宇哲自然也不会给什么好脸色看，对方说不说他其实都已经猜到了。
+ 白宇哲的话一出口，对方几人顿时脸色剧变，四股杀气瞬间锁定了白宇哲。他们虽然只是下人，但是在外面，却都是高人一等的存在，在浮城基本没人敢得罪，因为他们的主子地位足够高，随便跺跺脚都能让浮城晃三晃。
+ “敬酒不吃吃罚酒！”那男子一声冷哼，哐当一声长剑出鞘，直接一剑刺向了白宇哲的胸口！虽然主子说要带去见他，没说要直接杀了，但是就凭对方刚才那句话，他就忍不下这口气，弄个半死再带过去也无所谓。
+ 剑光闪烁，源力包裹着剑身，寒气逼人，速度极快，瞬间就到了白宇哲的胸前，对方赫然是灵窍境的高手！
+......
+```
