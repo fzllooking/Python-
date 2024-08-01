@@ -252,3 +252,12 @@ for novel in novel_list:
  剑光闪烁，源力包裹着剑身，寒气逼人，速度极快，瞬间就到了白宇哲的胸前，对方赫然是灵窍境的高手！
 ......
 ```
+
+* 下载到本地
+```PYTHON
+for novel in novel_list:
+    print(novel.get_text())
+    with open('novel_1.txt','a',encoding='utf-8')as fp:
+        fp.write(novel.get_text())
+```
+![image](https://github.com/user-attachments/assets/a4062c43-2394-4b16-8934-e09652c8368e)
